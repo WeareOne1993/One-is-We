@@ -1,0 +1,188 @@
+<template>
+  <style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 100%;
+      height: 450px;
+      margin: auto;
+  }
+
+  a:hover, a:focus {
+    color: #23527c;
+    text-decoration: none;
+}
+
+  .showPro{
+    width: 1140px;
+    margin-top: 20px;
+    margin: auto;
+  }
+
+  .form-group{
+    margin-left : 920px;
+  }
+
+  .nav{
+    background-color: #b1b8bb;
+  }
+
+  .nav > li > a:hover, .nav > li > a:focus{
+    background-color: #85c1da;
+  }
+
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
+    background-color: #85c1da;
+    border-color: #337ab7;
+  }
+
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    color: #eae2e2;
+    text-decoration: none;
+    background-color: #85c1da;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #f3f6f7;
+    border-color: #c8e1e8;
+    margin-bottom: 30px;
+}
+
+.modal-content {
+  width: 600px;
+  height: 600px;
+  margin-top: 200px;
+
+}
+
+.modal-body {
+  height: 480px;
+}
+
+.img_product{
+  width: 220px;
+  height: 450px;
+  float: left;
+}
+.imfo_product{
+  width:340px;
+  float:right;
+}
+.clear{
+  clear:both;
+}
+  </style>
+  <section class="au-animate">
+    <!-- SLIDER-->
+    <div class="container">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <img src="\img\5.jpg"  width="460" height="500">
+          </div>
+
+          <div class="item">
+            <img src="\img\2.jpg"  width="460" height="400">
+          </div>
+        
+          <div class="item">
+            <img src="\img\3.jpg"  width="460" height="400">
+          </div>
+
+          <div class="item">
+            <img src="\img\4.jpg"  width="460" height="400">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!--Show Product-->
+  <div class="showPro">
+
+    <ul class="nav nav-pills" role="tablist">
+        
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Tutorials <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Dong Ho</a></li>
+        <li><a href="#">Dien Thoai</a></li>
+        <li><a href="#">Xe Hoi</a></li>
+      </ul>
+    </li>
+  </ul>
+
+
+  <form class="navbar-form navbar-left" role="search">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search">
+    </div>
+  </form>
+  <!--Thumbnails-->
+  <div class="product">
+    <div class="row">
+      <div class="col-xs-6 col-md-3" repeat.for="i of users.length">
+        <!-- DOING==========================================================================-->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#A${i}">
+          <a href="#" class="thumbnail">
+            <img src="\img\1.jpg" alt="...">
+            <p> ${users[i].id}</p>
+          </a> 
+        </button>
+
+        <div class="modal fade" id="A${i}" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">${i}</h4>
+              </div>
+              <div class="modal-body">
+                <div class="img_product"><img src="\img\1_1.jpg"></div>
+                <div class="imfo_product">
+                  <ul class="list-group">
+                    <li class="list-group-item">Product' ID : ${users[i].id}</li>
+                    <li class="list-group-item">Product' Name: ${users[i].name}</li>
+                    <li class="list-group-item">Price : ${users[i].price}$</li>
+                  </ul>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+  
+      </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal -->
+
+</template>
