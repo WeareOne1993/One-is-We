@@ -18,24 +18,28 @@ public class Figure
     @Column(name="name")
     private String name;
     @Column(name="price")
-    private int price;
+    private double price;
+    @Column(name="path")
+    private String path;
     
     public Figure()
     {
         
     }
     
-    public Figure( String name, int price)
+    public Figure( String name, double price, String path)
     {
         this.name = name;
         this.price = price;
+        this.path = path;
     }
     
-    public Figure(int id, String name, int price)
+    public Figure(int id, String name, double price, String path)
     {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.path = path;
     }
 
     public int getId() {
@@ -57,13 +61,23 @@ public class Figure
         this.name = name;
     }
 
-    public int getPrice()
+    public double getPrice()
     {
         return price;
     }
 
-    public void setPrice(int price)
+    public void setPrice(double price)
     {
         this.price = price;
+    }
+    
+    public void setPath(String path)
+    {
+        this.path = path;
+    }
+    
+    public String getPath()
+    {
+        return path;
     }
 }

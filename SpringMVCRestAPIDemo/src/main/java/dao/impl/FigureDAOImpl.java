@@ -2,6 +2,7 @@ package dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -34,15 +35,16 @@ public class FigureDAOImpl implements FigureDAO
         Transaction tx = null;
         Integer figureId = null;
         String name = f.getName();
-        int price = f.getPrice();
+        String path = f.getPath();
+        double price = f.getPrice();
         
-        if (name != null && price != 0)
+        if (name != null && price != 0 && path != null)
         {
             try
             {
                 tx = session.beginTransaction();
                 
-                Figure figure = new Figure(name, price);
+                Figure figure = new Figure(name, price, path);
                 figureId = (Integer) session.save(figure);
                 tx.commit();
             }
@@ -73,9 +75,18 @@ public class FigureDAOImpl implements FigureDAO
         try
         {
             tr = session.beginTransaction();
-            String hql = "FROM Figure";
-            Query query = session.createQuery(hql);
-            List figures = query.list();
+            Criteria crit = session.createCriteria(Figure.class);
+            List<Figure> figures = crit.list();
+                
+//            String hql = "FROM Figure";
+//            Query query = session.createQuery(hql);
+//            List figures = query.list();
+//            for (Figure f: figures)
+//            {
+//                String directory = f.getDirectory().replace('\\', '\');
+//                
+//            }
+
             
             return figures;
         }
@@ -103,7 +114,8 @@ public class FigureDAOImpl implements FigureDAO
         Transaction tx = null;
         Integer figureId = f.getId();
         String name = f.getName();
-        int price = f.getPrice();
+        double price = f.getPrice();
+        String path = f.getPath(); 
         
         try
         {
@@ -111,6 +123,7 @@ public class FigureDAOImpl implements FigureDAO
             Figure figure = session.get(Figure.class, figureId);
             figure.setName(name);
             figure.setPrice(price);
+            figure.setPath(path);
             tx.commit();
         }
         catch (HibernateException he)
